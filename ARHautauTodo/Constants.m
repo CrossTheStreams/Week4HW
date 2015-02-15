@@ -12,5 +12,6 @@
 
 NSString * const ClickedTableViewRow = @"ClickedTableViewRow";
 NSString * const ClearTextFields = @"ClearTextFields";
+NSString * const DisableRemoveButton = @"DisableRemoveButton";
 
 @end

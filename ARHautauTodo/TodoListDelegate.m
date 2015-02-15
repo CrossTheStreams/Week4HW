@@ -61,6 +61,7 @@
 
     #pragma mark Change to none selection state
     if (selectedRow == -1) {
+        [nc postNotificationName: DisableRemoveButton object:nil];
         [nc postNotificationName: ClearTextFields object: nil];
     }
     

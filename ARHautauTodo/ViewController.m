@@ -46,6 +46,11 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(clearTextFields) name:ClearTextFields object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(disableRemoveButton)
+                                                 name:DisableRemoveButton
+                                               object:nil];
     [self.removeButton setEnabled:NO];
     
     [self.tableView setAllowsMultipleSelection:YES];
@@ -76,21 +81,24 @@
 }
 
 -(void) clearTextFields {
-    [self.removeButton setEnabled: NO];
     [self.todoTitleField setStringValue:@""];
     [self.todoTextField setStringValue:@""];
 }
 
+-(void) disableRemoveButton {
+    [self.removeButton setEnabled: NO];
+}
+
 
 -(void) updateInterfaceWithNotification:(NSNotification*) notification {
-    
     NSInteger rowSelection = [notification.userInfo[@"clickedRow"] integerValue];
     _currentSelection = rowSelection;
     
     NSString *title = [self.todoList titleForTodoItemAtIndex: rowSelection];
     NSString * text = [self.todoList textForTodoItemAtIndex: rowSelection];
     
-    [self.removeButton setEnabled: YES];
+    [self.removeButton setEnabled:
+     YES];
     
     if (title) {
         [self.todoTitleField setStringValue: title];
@@ -98,7 +106,6 @@
     if (text) {
         [self.todoTextField setStringValue:text];
     }
-
 }
 
 

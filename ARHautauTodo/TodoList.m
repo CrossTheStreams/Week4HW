@@ -38,37 +38,13 @@
 }
 
 -(void) addItem:(TodoItem *)item {
-    if ([self canAddItem:item]) {
-        [[self itemArray] addObject:item];
-    }
+    [[self itemArray] addObject:item];
 }
 
--(BOOL) canAddItem:(TodoItem *)item {
-    if (self.canAddDuplicateItems) {
-        return YES;
-    } else {
-        if ([self hasItemWithTitle:item.title]) {
-            return NO;
-        } else {
-            return YES;
-        }
-    }
-}
 
 -(void) addItemWithTitle:(NSString *)title andText: (NSString*) text {
     TodoItem *item = [[TodoItem alloc] initWithTitle:title AndText:text];
     [self addItem:item];
-}
-
--(BOOL)hasItemWithTitle:(NSString*)title {
-    BOOL hasItem = NO;
-    for (TodoItem *item in self.itemArray) {
-        NSString *itemTitle = item.title;
-        if ([itemTitle isEqualToString:title]) {
-            hasItem = YES;
-        }
-    }
-    return hasItem;
 }
 
 -(void)removeItemWithTitle:(NSString*) title {
@@ -77,10 +53,6 @@
         return [item.title isEqualToString:title];
     }];
     [self.itemArray removeObjectAtIndex:index];
-}
-
--(void) removeItemAtIndex:(NSInteger)index {
-    [self.itemArray removeObjectAtIndex: index];
 }
 
 -(void) removeItemsWithIndexSet:(NSIndexSet*) indexSet {

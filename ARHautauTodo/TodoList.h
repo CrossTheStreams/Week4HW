@@ -14,8 +14,6 @@
 @property (readwrite, nonatomic) BOOL canAddDuplicateItems;
 
 -(void) addItemWithTitle:(NSString *)title andText: (NSString*) text;
--(void) removeItemAtIndex: (NSInteger) index;
-
 -(void) removeItemsWithIndexSet:(NSIndexSet*) indexSet;
 -(NSString*) titleForTodoItemAtIndex: (NSInteger) index;
 -(NSString*) textForTodoItemAtIndex: (NSInteger) index;
