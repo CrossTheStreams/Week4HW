@@ -16,8 +16,7 @@
 -(void) addItemWithTitle:(NSString *)title andText: (NSString*) text;
 -(void) removeItemAtIndex: (NSInteger) index;
 
--(void)removeItemWithTitle:(NSString*) title;
-
+-(void) removeItemsWithIndexSet:(NSIndexSet*) indexSet;
 -(NSString*) titleForTodoItemAtIndex: (NSInteger) index;
 -(NSString*) textForTodoItemAtIndex: (NSInteger) index;
 

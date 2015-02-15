@@ -98,9 +98,7 @@
 
 - (IBAction)removeButtonClicked:(id)sender {
     NSIndexSet *selectedRows = [self.tableView selectedRowIndexes];
-    [selectedRows enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL *stop) {
-        [self.todoList removeItemAtIndex:idx];
-    }];
+    [self.todoList removeItemsWithIndexSet: selectedRows];
     [self updateInterface];
     [self clearTextFields];
 }

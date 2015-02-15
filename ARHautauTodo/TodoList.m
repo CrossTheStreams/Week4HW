@@ -83,6 +83,18 @@
     [self.itemArray removeObjectAtIndex: index];
 }
 
+-(void) removeItemsWithIndexSet:(NSIndexSet*) indexSet {
+    NSMutableArray *newArray = [[NSMutableArray alloc] init];
+    for (int i = 0; i < [self.itemArray count]; i++) {
+        if ([indexSet containsIndex: i]) {
+            continue;
+        } else {
+            [newArray addObject: [self.itemArray objectAtIndex:i]];
+        }
+    }
+    self.itemArray = newArray;
+}
+
 -(NSArray*) allItems {
     return [NSArray arrayWithArray:self.itemArray];
 }
