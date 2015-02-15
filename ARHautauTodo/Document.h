@@ -7,9 +7,11 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "TodoList.h"
 
 @interface Document : NSDocument
 
+@property (strong, nonatomic) TodoList *todoList;
 
 @end
 

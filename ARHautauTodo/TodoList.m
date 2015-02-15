@@ -11,7 +11,7 @@
 @interface TodoList()
 
 @property (strong, nonatomic) NSMutableArray *itemArray;
-@property (strong, nonatomic) TodoItem *currentTodoItem;
+@property (strong, nonatomic) NSArray *todoItemIds;
 
 @end
 
@@ -122,18 +122,16 @@
 #pragma mark NSCoding 
 
 -(void) encodeWithCoder:(NSCoder *)aCoder {
-    [aCoder encodeObject:self.itemArray forKey: @"itemArray"];
+    [aCoder encodeObject: self.itemArray forKey: @"itemArray"];
 }
 
 - (instancetype)initWithCoder:(NSCoder *)decoder {
-    
     self = [super init];
     if (self) {
         self.itemArray = [decoder decodeObjectForKey:@"itemArray"];
     }
     return self;
 }
-
 
 #pragma mark Seed Data Lists
 

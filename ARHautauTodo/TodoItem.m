@@ -20,4 +20,19 @@
     return self;
 }
 
+#pragma mark NSCoding
+
+-(void) encodeWithCoder:(NSCoder *)aCoder {
+    [aCoder encodeObject: self.title forKey: @"title"];
+    [aCoder encodeObject: self.text forKey: @"text"];
+}
+
+- (instancetype)initWithCoder:(NSCoder *)decoder {
+    self = [super init];
+    if (self) {
+        self.title = [decoder decodeObjectForKey:@"title"];
+        self.text = [decoder decodeObjectForKey:@"text"];
+    }
+    return self;
+}
 @end

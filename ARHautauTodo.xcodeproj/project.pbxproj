@@ -18,6 +18,7 @@
 		49675BF61A8C7F0B00F02576 /* TodoItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 49675BF51A8C7F0B00F02576 /* TodoItem.m */; };
 		49675BFC1A8C981E00F02576 /* TodoListDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 49675BFB1A8C981E00F02576 /* TodoListDelegate.m */; };
 		49675C371A8FDCD400F02576 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 49675C361A8FDCD400F02576 /* Constants.m */; };
+		49675C3A1A90600100F02576 /* WindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49675C391A90600100F02576 /* WindowController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,8 @@
 		49675BFB1A8C981E00F02576 /* TodoListDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodoListDelegate.m; sourceTree = "<group>"; };
 		49675C351A8FDCD400F02576 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		49675C361A8FDCD400F02576 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
+		49675C381A90600100F02576 /* WindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WindowController.h; sourceTree = "<group>"; };
+		49675C391A90600100F02576 /* WindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WindowController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +155,8 @@
 			children = (
 				49675BD21A8C6C8B00F02576 /* ViewController.h */,
 				49675BD31A8C6C8B00F02576 /* ViewController.m */,
+				49675C381A90600100F02576 /* WindowController.h */,
+				49675C391A90600100F02576 /* WindowController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -268,6 +273,7 @@
 				49675BD71A8C6C8B00F02576 /* Document.m in Sources */,
 				49675BD41A8C6C8B00F02576 /* ViewController.m in Sources */,
 				49675C371A8FDCD400F02576 /* Constants.m in Sources */,
+				49675C3A1A90600100F02576 /* WindowController.m in Sources */,
 				49675BD11A8C6C8B00F02576 /* main.m in Sources */,
 				49675BCF1A8C6C8B00F02576 /* AppDelegate.m in Sources */,
 				49675BFC1A8C981E00F02576 /* TodoListDelegate.m in Sources */,

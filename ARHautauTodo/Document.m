@@ -7,10 +7,11 @@
 //
 
 #import "Document.h"
-#import "TodoList.h"
+
 #import "ViewController.h"
 
 @interface Document ()
+
 
 @end
 
@@ -37,21 +38,20 @@
 - (void)makeWindowControllers {
     // Override to return the Storyboard file name of the document.
     [self addWindowController:[[NSStoryboard storyboardWithName:@"Main" bundle:nil] instantiateControllerWithIdentifier:@"Document Window Controller"]];
+   
 }
 
 - (NSData *)dataOfType:(NSString *)typeName error:(NSError **)outError {
     
-    TodoList *todoList = [[TodoList alloc] init];
-    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:todoList];
-    
+    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self.todoList];
     return data;
 }
 
 - (BOOL)readFromData:(NSData *)data ofType:(NSString *)typeName error:(NSError **)outError {
-    
     id object = [NSKeyedUnarchiver unarchiveObjectWithData: data];
     if ([object isKindOfClass: [TodoList class]]) {
-            return YES;
+        self.todoList = object;
+        return YES;
     }
     return NO;
 }

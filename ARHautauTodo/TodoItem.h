@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface TodoItem : NSObject
+@interface TodoItem : NSObject <NSCoding>
 
 @property(strong, nonatomic) NSString *title;
 @property(strong, nonatomic) NSString *text;

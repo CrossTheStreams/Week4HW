@@ -32,28 +32,40 @@
 }
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
     
-    TodoList *todoList = [[TodoList alloc] init];
-    
-    self.todoList = todoList;
     self.todoListDelegate = [[TodoListDelegate alloc] initWithTableView: self.tableView];
     
     [self.todoTitleField setDelegate:self];
     [self.todoTextField setDelegate: self];
     
-    [self updateInterface];
-    
-
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(updateInterfaceWithNotification:)
                                                  name: ClickedTableViewRow object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(clearTextFields) name:ClearTextFields object:nil];
-    
+    [self.removeButton setEnabled:NO];
     
     [self.tableView setAllowsMultipleSelection:YES];
+}
+
+-(void) viewWillAppear {
+    
+    id document = [[[[self view] window] windowController] document];
+    TodoList *todoList = [document todoList];
+    
+    
+    if ([todoList isKindOfClass: [TodoList class]]) {
+        [self setTodoList: todoList];
+    } else {
+        TodoList *todoList = [[TodoList alloc] init];
+        [self setTodoList: todoList];
+        [document setTodoList:todoList];
+    }
+    
+    [self updateInterface];
 }
 
 -(void) controlTextDidChange:(NSNotification *)obj {
@@ -64,6 +76,7 @@
 }
 
 -(void) clearTextFields {
+    [self.removeButton setEnabled: NO];
     [self.todoTitleField setStringValue:@""];
     [self.todoTextField setStringValue:@""];
 }
@@ -76,6 +89,8 @@
     
     NSString *title = [self.todoList titleForTodoItemAtIndex: rowSelection];
     NSString * text = [self.todoList textForTodoItemAtIndex: rowSelection];
+    
+    [self.removeButton setEnabled: YES];
     
     if (title) {
         [self.todoTitleField setStringValue: title];
