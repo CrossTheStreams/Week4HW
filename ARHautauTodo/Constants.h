@@ -11,5 +11,6 @@
 @interface Constants : NSObject
 
 extern NSString * const ClickedTableViewRow;
+extern NSString * const ClearTextFields;
 
 @end

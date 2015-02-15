@@ -31,7 +31,7 @@
     self = [self init];
     if (self) {
         for (NSString *title in titles) {
-            [self addItemWithTitle:title andText: @""];
+            [self addItemWithTitle:title andText: @"Remember to do this..."];
         }
     }
     return self;
@@ -77,6 +77,10 @@
         return [item.title isEqualToString:title];
     }];
     [self.itemArray removeObjectAtIndex:index];
+}
+
+-(void) removeItemAtIndex:(NSInteger)index {
+    [self.itemArray removeObjectAtIndex: index];
 }
 
 -(NSArray*) allItems {

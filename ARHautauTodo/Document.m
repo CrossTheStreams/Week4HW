@@ -8,6 +8,7 @@
 
 #import "Document.h"
 #import "TodoList.h"
+#import "ViewController.h"
 
 @interface Document ()
 
@@ -25,6 +26,7 @@
 
 - (void)windowControllerDidLoadNib:(NSWindowController *)aController {
     [super windowControllerDidLoadNib:aController];
+    
     // Add any code here that needs to be executed once the windowController has loaded the document's window.
 }
 
@@ -41,6 +43,7 @@
     
     TodoList *todoList = [[TodoList alloc] init];
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:todoList];
+    
     return data;
 }
 
@@ -48,9 +51,9 @@
     
     id object = [NSKeyedUnarchiver unarchiveObjectWithData: data];
     if ([object isKindOfClass: [TodoList class]]) {
-        
+            return YES;
     }
-    return YES;
+    return NO;
 }
 
 @end

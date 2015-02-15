@@ -39,6 +39,10 @@
     NSTableCellView *result = [tableView makeViewWithIdentifier:@"TodoItemCell" owner:nil];
     result.textField.stringValue = [self.titleArray objectAtIndex:row];
     
+    if (row % 2) {
+        [result.layer setBackgroundColor: [[NSColor lightGrayColor] CGColor]];
+    }
+    
     return result;
 }
 
@@ -47,9 +51,23 @@
 }
 
 - (CGFloat)tableView:(NSTableView *)tableView heightOfRow:(NSInteger)row {
-    CGFloat height = 30.0;
+    CGFloat height = 50.0;
     return height;
+}
 
+-(void)tableViewSelectionDidChange:(NSNotification *)notification {
+    NSInteger selectedRow = [notification.object selectedRow];
+    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+
+    #pragma mark Change to none selection state
+    if (selectedRow == -1) {
+        [nc postNotificationName: ClearTextFields object: nil];
+    }
+    
+    #pragma mark Change to many selection state
+    if ([[self.tableView selectedRowIndexes] count] > 1) {
+        [nc postNotificationName: ClearTextFields object: nil];
+    }
 }
 
 - (BOOL)tableView:(NSTableView *)tableView shouldSelectRow:(NSInteger)rowIndex {

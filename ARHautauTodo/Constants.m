@@ -11,5 +11,6 @@
 @implementation Constants
 
 NSString * const ClickedTableViewRow = @"ClickedTableViewRow";
+NSString * const ClearTextFields = @"ClearTextFields";
 
 @end

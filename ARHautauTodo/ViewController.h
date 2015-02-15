@@ -7,10 +7,11 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "TodoList.h"
 
 @interface ViewController : NSViewController <NSTextFieldDelegate>
 
-
+@property (strong, nonatomic) TodoList *todoList;
 
 @end
 

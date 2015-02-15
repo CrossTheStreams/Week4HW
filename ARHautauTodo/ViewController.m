@@ -7,14 +7,14 @@
 //
 
 #import "ViewController.h"
-#import "TodoList.h"
+
 #import "TodoListDelegate.h"
 #import "Constants.h"
 
 
 @interface ViewController ()
 
-@property (strong, nonatomic) TodoList *todoList;
+
 @property (strong, nonatomic) TodoListDelegate *todoListDelegate;
 
 @property (weak) IBOutlet NSTableView *tableView;
@@ -34,7 +34,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    TodoList *todoList = [TodoList morningList];
+    TodoList *todoList = [[TodoList alloc] init];
     
     self.todoList = todoList;
     self.todoListDelegate = [[TodoListDelegate alloc] initWithTableView: self.tableView];
@@ -43,8 +43,17 @@
     [self.todoTextField setDelegate: self];
     
     [self updateInterface];
-    // Do any additional setup after loading the view.
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateInterfaceWithNotification:) name: ClickedTableViewRow object:nil];
+    
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(updateInterfaceWithNotification:)
+                                                 name: ClickedTableViewRow object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(clearTextFields) name:ClearTextFields object:nil];
+    
+    
+    [self.tableView setAllowsMultipleSelection:YES];
 }
 
 -(void) controlTextDidChange:(NSNotification *)obj {
@@ -52,6 +61,11 @@
     NSString *todoText = [self.todoTextField stringValue];
     [self.todoList updateTodoItemAtIndex: _currentSelection WithTitle:todoTitle AndText:todoText];
     [self updateInterface];
+}
+
+-(void) clearTextFields {
+    [self.todoTitleField setStringValue:@""];
+    [self.todoTextField setStringValue:@""];
 }
 
 
@@ -77,7 +91,19 @@
     [self.todoListDelegate updateTableViewWithTitles: [self.todoList itemTitles]];
 }
 
+- (IBAction)addButtonClicked:(id)sender {
+    [self.todoList addItemWithTitle:@"New Item" andText: @"Add a description..."];
+    [self updateInterface];
+}
 
+- (IBAction)removeButtonClicked:(id)sender {
+    NSIndexSet *selectedRows = [self.tableView selectedRowIndexes];
+    [selectedRows enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL *stop) {
+        [self.todoList removeItemAtIndex:idx];
+    }];
+    [self updateInterface];
+    [self clearTextFields];
+}
 
 - (void)setRepresentedObject:(id)representedObject {
     [super setRepresentedObject:representedObject];
