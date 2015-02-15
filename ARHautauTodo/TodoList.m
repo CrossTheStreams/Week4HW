@@ -11,6 +11,7 @@
 @interface TodoList()
 
 @property (strong, nonatomic) NSMutableArray *itemArray;
+@property (strong, nonatomic) TodoItem *currentTodoItem;
 
 @end
 
@@ -30,7 +31,7 @@
     self = [self init];
     if (self) {
         for (NSString *title in titles) {
-            [self addItemWithTitle:title];
+            [self addItemWithTitle:title andText: @""];
         }
     }
     return self;
@@ -54,18 +55,8 @@
     }
 }
 
--(BOOL) canAddItemWithTitle:(NSString *)title {
-    if ([title isEqualToString:@""]) {
-        return NO;
-    } else {
-        TodoItem *item = [[TodoItem alloc] initWithTitle: title];
-        return [self canAddItem:item];
-    }
-
-}
-
--(void) addItemWithTitle:(NSString *)title {
-    TodoItem *item = [[TodoItem alloc] initWithTitle:title];
+-(void) addItemWithTitle:(NSString *)title andText: (NSString*) text {
+    TodoItem *item = [[TodoItem alloc] initWithTitle:title AndText:text];
     [self addItem:item];
 }
 
@@ -104,17 +95,25 @@
     return [self.itemArray count];
 }
 
+-(NSString*) titleForTodoItemAtIndex:(NSInteger)index {
+    return [[self.itemArray objectAtIndex:index] title];
+}
+
+-(NSString*) textForTodoItemAtIndex:(NSInteger) index {
+    return [[self.itemArray objectAtIndex:index] text];
+}
+
 #pragma mark NSCoding 
 
 -(void) encodeWithCoder:(NSCoder *)aCoder {
-    [aCoder encodeObject:self.itemArray forKey: @"itemsArray"];
+    [aCoder encodeObject:self.itemArray forKey: @"itemArray"];
 }
 
 - (instancetype)initWithCoder:(NSCoder *)decoder {
     
     self = [super init];
     if (self) {
-        self.itemArray = [decoder decodeObjectForKey:@"itemsArray"];
+        self.itemArray = [decoder decodeObjectForKey:@"itemArray"];
     }
     return self;
 }
@@ -132,6 +131,12 @@
     NSArray *titles = @[@"dinner", @"shower", @"sleep"];
     TodoList *list = [[TodoList alloc] initWithTitles:titles];
     return list;
+}
+
+-(void) updateTodoItemAtIndex:(NSInteger) index WithTitle:(NSString *) title AndText:(NSString*) text {
+    TodoItem *item = [self.itemArray objectAtIndex:index];
+    item.title = title;
+    item.text = text;
 }
 
 @end

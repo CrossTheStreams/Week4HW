@@ -11,10 +11,11 @@
 @implementation TodoItem
 
 
--(instancetype)initWithTitle:(NSString*)title {
+-(instancetype)initWithTitle:(NSString*)title AndText:(NSString*) text {
     self = [super init];
     if (self) {
         [self setTitle:title];
+        [self setText: text];
     }
     return self;
 }

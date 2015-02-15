@@ -1,12 +1,13 @@
 //
 //  Document.m
-//  ARHautauTodo
+//  ARHautauTodoApp
 //
-//  Created by Andrew Hautau on 2/11/15.
+//  Created by Andrew Hautau on 2/5/15.
 //  Copyright (c) 2015 Andrew Hautau. All rights reserved.
 //
 
 #import "Document.h"
+#import "TodoList.h"
 
 @interface Document ()
 
@@ -37,17 +38,18 @@
 }
 
 - (NSData *)dataOfType:(NSString *)typeName error:(NSError **)outError {
-    // Insert code here to write your document to data of the specified type. If outError != NULL, ensure that you create and set an appropriate error when returning nil.
-    // You can also choose to override -fileWrapperOfType:error:, -writeToURL:ofType:error:, or -writeToURL:ofType:forSaveOperation:originalContentsURL:error: instead.
-    [NSException raise:@"UnimplementedMethod" format:@"%@ is unimplemented", NSStringFromSelector(_cmd)];
-    return nil;
+    
+    TodoList *todoList = [[TodoList alloc] init];
+    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:todoList];
+    return data;
 }
 
 - (BOOL)readFromData:(NSData *)data ofType:(NSString *)typeName error:(NSError **)outError {
-    // Insert code here to read your document from the given data of the specified type. If outError != NULL, ensure that you create and set an appropriate error when returning NO.
-    // You can also choose to override -readFromFileWrapper:ofType:error: or -readFromURL:ofType:error: instead.
-    // If you override either of these, you should also override -isEntireFileLoaded to return NO if the contents are lazily loaded.
-    [NSException raise:@"UnimplementedMethod" format:@"%@ is unimplemented", NSStringFromSelector(_cmd)];
+    
+    id object = [NSKeyedUnarchiver unarchiveObjectWithData: data];
+    if ([object isKindOfClass: [TodoList class]]) {
+        
+    }
     return YES;
 }
 

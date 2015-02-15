@@ -11,7 +11,8 @@
 @interface TodoItem : NSObject
 
 @property(strong, nonatomic) NSString *title;
+@property(strong, nonatomic) NSString *text;
 
--(instancetype)initWithTitle:(NSString*)title;
+-(instancetype)initWithTitle:(NSString*)title AndText:(NSString*) text;
 
 @end

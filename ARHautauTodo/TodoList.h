@@ -13,13 +13,14 @@
 
 @property (readwrite, nonatomic) BOOL canAddDuplicateItems;
 
--(void)addItem:(TodoItem*)item;    // insert item if OK
--(BOOL)canAddItem:(TodoItem*)item; // check if OK to insert
+-(void) addItemWithTitle:(NSString *)title andText: (NSString*) text;
 
--(void)addItemWithTitle:(NSString*)title; // create and insert item if OK
--(BOOL)canAddItemWithTitle:(NSString *)title; // check if OK to insert
--(BOOL)hasItemWithTitle:(NSString*)title; // check if any item contained already has same title
 -(void)removeItemWithTitle:(NSString*) title;
+
+-(NSString*) titleForTodoItemAtIndex: (NSInteger) index;
+-(NSString*) textForTodoItemAtIndex: (NSInteger) index;
+
+-(void) updateTodoItemAtIndex:(NSInteger) index WithTitle:(NSString *) title AndText:(NSString*) text;
 
 -(NSArray*)itemTitles;  // an array of all item titles (NSString*)
 -(NSArray*)allItems;    // an array of all items
