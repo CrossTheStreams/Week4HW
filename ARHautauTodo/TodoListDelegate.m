@@ -72,7 +72,7 @@
 }
 
 - (BOOL)tableView:(NSTableView *)tableView shouldSelectRow:(NSInteger)rowIndex {
-    if ([[self.tableView selectedRowIndexes] count] == 1) {
+    if (!([[self.tableView selectedRowIndexes] count] > 1)) {
         NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
         [nc postNotificationName: ClickedTableViewRow object: self.tableView userInfo: @{@"clickedRow": [NSNumber numberWithInteger:rowIndex]}];
     }

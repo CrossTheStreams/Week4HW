@@ -76,8 +76,13 @@
 -(void) controlTextDidChange:(NSNotification *)obj {
     NSString *todoTitle = [self.todoTitleField stringValue];
     NSString *todoText = [self.todoTextField stringValue];
-    [self.todoList updateTodoItemAtIndex: _currentSelection WithTitle:todoTitle AndText:todoText];
-    [self updateInterface];
+    if ([self.todoList itemCount] > 0) {
+        [self.todoList updateTodoItemAtIndex: _currentSelection WithTitle:todoTitle AndText:todoText];
+        [self updateInterface];
+    } else {
+        [self.todoList addItemWithTitle:todoTitle andText: todoText];
+        [self updateInterface];
+    }
 }
 
 -(void) clearTextFields {
